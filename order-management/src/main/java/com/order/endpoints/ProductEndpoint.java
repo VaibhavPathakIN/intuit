@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.order.entity.Product;
 import com.order.exceptions.WebExceptions;
@@ -30,7 +31,7 @@ public class ProductEndpoint {
 			throw new WebExceptions("Invalid data to create a product").InvalidRequestException();
 
 		Long productId = service.createProduct(productDetails);
-		return Response.ok("Product created with product id : " + productId).build();
+		return Response.status(Status.CREATED).entity("Product created with product id : " + productId).build();
 	}
 
 	@GET
